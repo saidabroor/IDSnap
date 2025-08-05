@@ -1,0 +1,13 @@
+pandas
+numpy
+opencv-python
+faiss-cpu
+matplotlib
+ipython
+scikit-learn
+onnxruntime
+insightface
+dash
+dash-bootstrap-components
+mediapipe
+sqlite3
