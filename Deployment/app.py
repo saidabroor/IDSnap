@@ -17,6 +17,8 @@ import pickle
 import sqlite3
 from insightface.app import FaceAnalysis
 import uuid
+
+
 # ========== SETUP ==========
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), "uploads")
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -50,6 +52,9 @@ def add_landmarks_to_image(image_path):
 # ========== DASH SETUP ==========
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.COSMO], suppress_callback_exceptions=True)
 app.title = "IDSnap"
+
+from flask_cors import CORS
+CORS(app.server)
 
 # ========== LAYOUT ==========
 app.layout = html.Div([

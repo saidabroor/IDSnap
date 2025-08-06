@@ -10,4 +10,5 @@ insightface
 dash
 dash-bootstrap-components
 mediapipe
-sqlite3
+gunicorn
+flask-cors
