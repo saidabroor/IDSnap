@@ -7,7 +7,7 @@ def get_person_info(name):
         cursor = conn.cursor()
         
         # Query for information by name
-        cursor.execute('SELECT information FROM data WHERE name = ?', (name,))
+        cursor.execute('SELECT information FROM data WHERE name = ?', (name.strip().lower(),))
         result = cursor.fetchone()
         
         # Close connection
