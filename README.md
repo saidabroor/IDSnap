@@ -6,7 +6,7 @@ IDSnap is an AI-powered identification system that recognizes a person from a ph
 
 📦 Vector database (e.g., FAISS, Pinecone) to store and search facial representations.
 
-🗂️ Relational/NoSQL database to store personal information.
+🗂️ Relational/SQLite database to store personal information.
 
 📤 Image upload interface (or real-time webcam support).
 
@@ -16,18 +16,15 @@ IDSnap is an AI-powered identification system that recognizes a person from a ph
 
 🛠️ Tech Stack
 Layer Technology
-Frontend (Optional) HTML / CSS / React / Bolt AI
-Backend Python, Flask or FastAPI
-Face Embedding DeepFace / dlib / InsightFace
-Vector Database FAISS / Pinecone / Weaviate
-Metadata Database PostgreSQL / MongoDB
+Frontend HTML / CSS / React / Bolt AI
+Backend Python, Flask
+Face Embedding DeepFace / InsightFace / Mediapipe
+Vector Database FAISS / Pinecone
 Image Processing OpenCV / PIL
-Deployment Docker, Render, Vercel, Railway
+Deployment Docker, Render, Vercel
 
 🏗️ System Architecture
-mathematica
-Copy
-Edit
+
 User → Uploads Photo
 ↓
 Face Embedding Model (DeepFace)
@@ -63,17 +60,6 @@ Name
 Membership ID
 Training Plan
 Assigned Locker Number
-
-✅ To-Do / Roadmap
-Add real-time webcam face detection
-
-Add user authentication for admins
-
-Add support for multiple faces in one photo
-
-Improve embedding matching threshold logic
-
-Deploy to cloud (Render, Vercel, etc.)
 
 ⚠️ Security Notes
 All embeddings are stored securely, not raw images.
