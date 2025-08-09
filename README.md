@@ -37,55 +37,6 @@ Vector Database → Find Closest Match
 Info Database → Retrieve Person's Info
 ↓
 Return JSON or UI Display of Full Profile
-📁 Folder Structure
-bash
-Copy
-Edit
-IDSnap/
-│
-├── app/
-│ ├── main.py # Backend API logic
-│ ├── face_recognition.py # Embedding and vector search
-│ ├── db/
-│ │ ├── vector_db.py # Vector DB operations
-│ │ └── metadata_db.py # SQL/NoSQL DB operations
-│
-├── frontend/ (optional)
-│ ├── index.html # UI for upload
-│ └── ...
-│
-├── models/
-│ └── face_model.dat # Pretrained embedding model
-│
-├── static/uploads/ # Uploaded images
-│
-├── requirements.txt
-├── Dockerfile
-└── README.md
-🔧 Setup Instructions
-
-1. Clone the Repo
-   bash
-   Copy
-   Edit
-   git clone https://github.com/saidabroor/IDSnap.git
-   cd IDSnap
-2. Install Dependencies
-   bash
-   Copy
-   Edit
-   pip install -r requirements.txt
-   Make sure you have Python 3.8+ and dlib prerequisites installed.
-
-3. Start the Backend
-   bash
-   Copy
-   Edit
-   python app/main.py
-   Or use uvicorn if using FastAPI.
-
-4. (Optional) Run Frontend
-   You can serve the frontend using Bolt AI, React, or a basic HTML template.
 
 🧪 API Endpoints
 Method Endpoint Description
@@ -95,20 +46,23 @@ POST /add_person Add a new person + vector
 
 📚 Example Use Case: Military Attendance
 A soldier stands in front of a camera or uploads a selfie.
-
 The system generates an embedding and finds the closest match.
-
 The system returns:
-
 Name
-
 ID Number
-
 Status (e.g., enlisted / discharged)
-
 Last Seen
-
 Assigned Unit
+
+📚 2nd Example Use Case: Gym Member Recognition
+
+A gym member signs up by submitting a photo along with their membership ID, preferred training plan, and locker number.
+When they arrive, the system spots their face at the entrance.
+It retrieves and displays:
+Name
+Membership ID
+Training Plan
+Assigned Locker Number
 
 ✅ To-Do / Roadmap
 Add real-time webcam face detection
