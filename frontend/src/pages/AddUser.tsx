@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { UserPlus, Check, AlertCircle } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
-import FileUpload from '../components/FileUpload';
+import React, { useState } from "react";
+import { UserPlus, Check, AlertCircle } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
+import FileUpload from "../components/FileUpload";
 
 const AddUser: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    info: '',
+    name: "",
+    info: "",
   });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -14,11 +14,13 @@ const AddUser: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const { t } = useLanguage();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -30,9 +32,9 @@ const AddUser: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name.trim() || !selectedFile) {
-      setError('Please fill in all required fields');
+      setError("Please fill in all required fields");
       return;
     }
 
@@ -41,25 +43,27 @@ const AddUser: React.FC = () => {
     setSuccess(false);
 
     const submitData = new FormData();
-    submitData.append('name', formData.name);
-    submitData.append('info', formData.info);
-    submitData.append('image', selectedFile);
+    submitData.append("name", formData.name);
+    submitData.append("info", formData.info);
+    submitData.append("image", selectedFile);
+
+    const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
     try {
-      const response = await fetch('/add_user', {
-        method: 'POST',
+      const response = await fetch(`${apiUrl}/add_user`, {
+        method: "POST",
         body: submitData,
       });
 
       if (!response.ok) {
-        throw new Error('Failed to add user');
+        throw new Error("Failed to add user");
       }
 
       setSuccess(true);
-      setFormData({ name: '', info: '' });
+      setFormData({ name: "", info: "" });
       setSelectedFile(null);
     } catch (err) {
-      setError('Failed to add user. Please try again.');
+      setError("Failed to add user. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -75,21 +79,26 @@ const AddUser: React.FC = () => {
             </div>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-            {t('addNewUserTitle')}
+            {t("addNewUserTitle")}
           </h1>
           <p className="text-gray-600 text-lg">
-            {t('language') === 'ko' 
-              ? '새로운 사용자를 데이터베이스에 추가하세요' 
-              : 'Add a new person to the recognition database'
-            }
+            {t("language") === "ko"
+              ? "새로운 사용자를 데이터베이스에 추가하세요"
+              : "Add a new person to the recognition database"}
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-xl p-8 space-y-8">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white rounded-2xl shadow-xl p-8 space-y-8"
+        >
           {/* Name Input */}
           <div>
-            <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-              {t('name')} <span className="text-red-500">*</span>
+            <label
+              htmlFor="name"
+              className="block text-sm font-semibold text-gray-700 mb-2"
+            >
+              {t("name")} <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -97,7 +106,7 @@ const AddUser: React.FC = () => {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              placeholder={t('namePlaceholder')}
+              placeholder={t("namePlaceholder")}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
               required
             />
@@ -105,15 +114,18 @@ const AddUser: React.FC = () => {
 
           {/* Info Input */}
           <div>
-            <label htmlFor="info" className="block text-sm font-semibold text-gray-700 mb-2">
-              {t('info')}
+            <label
+              htmlFor="info"
+              className="block text-sm font-semibold text-gray-700 mb-2"
+            >
+              {t("info")}
             </label>
             <textarea
               id="info"
               name="info"
               value={formData.info}
               onChange={handleInputChange}
-              placeholder={t('infoPlaceholder')}
+              placeholder={t("infoPlaceholder")}
               rows={4}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors resize-none"
             />
@@ -122,7 +134,8 @@ const AddUser: React.FC = () => {
           {/* File Upload */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              {t('language') === 'ko' ? '사진' : 'Photo'} <span className="text-red-500">*</span>
+              {t("language") === "ko" ? "사진" : "Photo"}{" "}
+              <span className="text-red-500">*</span>
             </label>
             <FileUpload onFileSelect={handleFileSelect} />
           </div>
@@ -134,7 +147,7 @@ const AddUser: React.FC = () => {
                 <div className="bg-green-100 p-2 rounded-lg">
                   <Check className="h-5 w-5 text-green-600" />
                 </div>
-                <p className="text-green-800 font-medium">{t('userAdded')}</p>
+                <p className="text-green-800 font-medium">{t("userAdded")}</p>
               </div>
             </div>
           )}
@@ -160,12 +173,12 @@ const AddUser: React.FC = () => {
             {isLoading ? (
               <>
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                <span>{t('loading')}</span>
+                <span>{t("loading")}</span>
               </>
             ) : (
               <>
                 <UserPlus className="h-5 w-5" />
-                <span>{t('submitUser')}</span>
+                <span>{t("submitUser")}</span>
               </>
             )}
           </button>
