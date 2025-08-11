@@ -1,6 +1,8 @@
 📸 IDSnap – Photo-Based Identity Lookup System
 IDSnap is an AI-powered identification system that recognizes a person from a photo and retrieves detailed information about them. It uses facial embeddings, a vector similarity search engine, and a metadata database to enable secure and accurate person lookup. Ideal for use cases like military attendance, school check-ins, corporate access control, or visitor registration.
 
+![alt text](IDSnap_gif.gif)
+
 🚀 Features
 🧠 Face embedding and recognition using deep learning.
 
